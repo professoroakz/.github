@@ -2,3 +2,5 @@
 .lemon # cucumber like language for .files and such, 
        # expression in NL 
 .etc
+.bottalk # discord like for situation with all our things 
+         # (maps if missing batchjob like everything else) 
