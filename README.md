@@ -47,20 +47,20 @@ This repository is available as an official Docker package on GitHub Container R
 
 ```bash
 # Pull the latest version
-docker pull ghcr.io/professoroakz/.github:latest
+docker pull ghcr.io/professoroakz/github-config:latest
 
 # Pull a specific version
-docker pull ghcr.io/professoroakz/.github:1.3.37
+docker pull ghcr.io/professoroakz/github-config:1.3.37
 ```
 
 ### Running the Container
 
 ```bash
 # Run interactively
-docker run -it ghcr.io/professoroakz/.github:latest
+docker run -it ghcr.io/professoroakz/github-config:latest
 
 # Run with custom volume mounts
-docker run -it -v $(pwd)/profile:/app/profile:ro ghcr.io/professoroakz/.github:latest
+docker run -it -v $(pwd)/profile:/app/profile:ro ghcr.io/professoroakz/github-config:latest
 ```
 
 ### Using Docker Compose
@@ -80,10 +80,10 @@ docker-compose down
 
 ```bash
 # Build with default settings
-docker build -t professoroakz/.github:local .
+docker build -t professoroakz/github-config:local .
 
 # Build with custom version
-docker build --build-arg VERSION=1.3.37 -t professoroakz/.github:1.3.37 .
+docker build --build-arg VERSION=1.3.37 -t professoroakz/github-config:1.3.37 .
 ```
 
 ## NPM Package
