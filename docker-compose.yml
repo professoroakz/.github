@@ -15,7 +15,7 @@ services:
         VERSION: ${VERSION:-1.3.37}
         BUILD_DATE: ${BUILD_DATE:-}
         VCS_REF: ${VCS_REF:-}
-    image: ghcr.io/professoroakz/.github:${VERSION:-latest}
+    image: ghcr.io/professoroakz/github-config:${VERSION:-latest}
     container_name: github-config
     restart: unless-stopped
     # Optional: Mount local directories for development

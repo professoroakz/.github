@@ -1,6 +1,6 @@
 # Official Dockerfile for professoroakz/.github
 # GitHub configuration repository package
-FROM alpine:3.18
+FROM node:20-alpine
 
 # Build arguments for versioning
 ARG VERSION=1.3.37
@@ -22,20 +22,26 @@ LABEL org.opencontainers.image.title="professoroakz/.github" \
 
 # Set environment variables
 ENV APP_VERSION=${VERSION} \
-    APP_HOME=/app
-
-# Create non-root user for security
-RUN addgroup -g 1000 appgroup && \
-    adduser -u 1000 -G appgroup -h /app -D appuser
-
-# Copy repository contents
-COPY --chown=appuser:appgroup . ${APP_HOME}
+    APP_HOME=/app \
+    NODE_ENV=production
 
 # Set working directory
 WORKDIR ${APP_HOME}
 
+# Copy package.json first for better caching
+COPY package.json ./
+
+# Install npm dependencies
+RUN npm install --omit=dev
+
+# Copy repository contents
+COPY . .
+
+# Change ownership to node user (built-in non-root user in node image)
+RUN chown -R node:node ${APP_HOME}
+
 # Switch to non-root user
-USER appuser
+USER node
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
