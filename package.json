@@ -1,8 +1,7 @@
 {
   "name": "@professoroakz/github",
   "version": "1.3.37",
-  "description": "All my cool github cool stuff + fixes and reaches everything I own and work on.",
-  "main": "index.js",
+  "description": "GitHub configuration repository containing profile settings, workflows, and project configurations.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/professoroakz/.github.git"
