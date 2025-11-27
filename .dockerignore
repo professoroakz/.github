@@ -34,7 +34,9 @@ node_modules/
 npm-debug.log
 
 # Docker files (avoid recursive build)
-docker-compose*.yml
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.yml
 Dockerfile*
 !Dockerfile
 
