@@ -8,3 +8,4 @@
 - 📫 How to reach me: linktr.ee/oktays
 - 😄 Pronouns: him/he
 - ⚡ Fun fact: xaoex forever
+
