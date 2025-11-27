@@ -1,5 +1,45 @@
+# Git files
 .git
 .gitignore
+.gitattributes
+
+# Documentation files (optional - not needed in image)
 CHANGELOG.md
 CONTRIBUTING.md
 LICENSE.md
+*.md
+!README.md
+
+# GitHub specific files
+.github/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Node.js (if applicable)
+node_modules/
+npm-debug.log
+
+# Docker files (avoid recursive build)
+docker-compose*.yml
+Dockerfile*
+!Dockerfile
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
