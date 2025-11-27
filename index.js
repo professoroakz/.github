@@ -48,8 +48,12 @@ function getMetadata() {
  */
 function listProfileFiles() {
   const profileDir = path.join(packageRoot, 'profile');
-  if (fs.existsSync(profileDir)) {
-    return fs.readdirSync(profileDir);
+  try {
+    if (fs.existsSync(profileDir)) {
+      return fs.readdirSync(profileDir);
+    }
+  } catch (err) {
+    // Return empty array if directory is not readable
   }
   return [];
 }
@@ -60,8 +64,12 @@ function listProfileFiles() {
  */
 function listSettingsFiles() {
   const settingsDir = path.join(packageRoot, 'settings');
-  if (fs.existsSync(settingsDir)) {
-    return fs.readdirSync(settingsDir);
+  try {
+    if (fs.existsSync(settingsDir)) {
+      return fs.readdirSync(settingsDir);
+    }
+  } catch (err) {
+    // Return empty array if directory is not readable
   }
   return [];
 }

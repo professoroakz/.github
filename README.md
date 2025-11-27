@@ -1,6 +1,6 @@
 # .github
 
-All my cool github cool stuff + fixes and reaches everything I own and work on.
+All my cool GitHub cool stuff + fixes and reaches everything I own and work on.
 
 ## NPM Package
 
