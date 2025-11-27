@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'
+      - 'release-v*'
   release:
     types: [published]
   workflow_dispatch:
