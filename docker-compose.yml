@@ -1,0 +1,43 @@
+# Docker Compose configuration for professoroakz/.github
+# Official package deployment configuration
+#
+# Note: This configuration expects 'profile' and 'settings' directories to exist
+# in the same directory as this file. These directories are optional and can be
+# removed from the volumes section if not needed.
+name: github
+
+services:
+  github-config:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VERSION: ${VERSION:-1.3.37}
+        BUILD_DATE: ${BUILD_DATE:-}
+        VCS_REF: ${VCS_REF:-}
+    image: ghcr.io/professoroakz/.github:${VERSION:-latest}
+    container_name: github-config
+    restart: unless-stopped
+    # Optional: Mount local directories for development
+    # Uncomment the volumes section if you have local profile/settings directories
+    # volumes:
+    #   - ./profile:/app/profile:ro
+    #   - ./settings:/app/settings:ro
+    environment:
+      - APP_VERSION=${VERSION:-1.3.37}
+    healthcheck:
+      test: ["CMD", "test", "-f", "/app/VERSION"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - github-network
+    labels:
+      - "com.professoroakz.service=github-config"
+      - "com.professoroakz.version=${VERSION:-1.3.37}"
+
+networks:
+  github-network:
+    driver: bridge
+    name: github-network
