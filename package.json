@@ -1,6 +1,6 @@
 {
   "name": "@professoroakz/github",
-  "version": "1.3.37",
+  "version": "1.3.3.7.github.dotfiles.enterprise",
   "description": "GitHub configuration repository containing profile settings, workflows, and project configurations.",
   "main": "index.js",
   "repository": {
