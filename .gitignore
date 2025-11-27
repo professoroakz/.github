@@ -1,0 +1,12 @@
+# Package build artifacts
+*.tgz
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
