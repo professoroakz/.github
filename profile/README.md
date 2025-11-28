@@ -8,7 +8,7 @@
 - 📫 How to reach me: linktr.ee/oktays
 - 😄 Pronouns: him/he
 - ⚡ Fun fact: xaoex forever
-- In @o(cool)
-- Studying @polytechnic
-- Working @xaoex @simulation @reality
-- Running repos + evaling + deving projects and things
+- 😎 In @o(cool)
+- 🤩 Studying @polytechnic
+- 🤓 Working @xaoex @simulation @reality @psychadelics
+- 😄 Running repos + evaling + deving projects and things
