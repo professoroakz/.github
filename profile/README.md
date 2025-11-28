@@ -11,3 +11,4 @@
 - In @o(cool)
 - Studying @polytechnic
 - Working @xaoex @simulation @reality
+- Running repos + evaling + deving projects and things
