@@ -50,7 +50,7 @@ This repository is available as an official Docker package on GitHub Container R
 docker pull ghcr.io/professoroakz/github-config:latest
 
 # Pull a specific version
-docker pull ghcr.io/professoroakz/github-config:1.3.3.7.github.dotfiles.enterprise
+docker pull ghcr.io/professoroakz/github-config:1.3.37
 ```
 
 ### Running the Container
@@ -83,7 +83,7 @@ docker-compose down
 docker build -t professoroakz/github-config:local .
 
 # Build with custom version
-docker build --build-arg VERSION=1.3.3.7.github.dotfiles.enterprise -t professoroakz/github-config:1.3.3.7.github.dotfiles.enterprise .
+docker build --build-arg VERSION=1.3.37 -t professoroakz/github-config:1.3.37 .
 ```
 
 ## NPM Package
@@ -96,4 +96,4 @@ npm install @professoroakz/github
 
 ## Version
 
-Current version: **1.3.3.7.github.dotfiles.enterprise**
+Current version: **1.3.37**
