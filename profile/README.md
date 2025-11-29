@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-- Applying + Making + Started Core Movement(s) around the 90s
+- 👽 Applying + Making + Started Core Movement(s) around the 90s
 - 🔭 I’m currently working on xaoex + code
 - 🌱 I’m currently learning cs
 - 👯 I’m looking to collaborate on cs
