@@ -1,5 +1,6 @@
 ## Hi there 👋
 
+- Core Movement(s)
 - 🔭 I’m currently working on xaoex + code
 - 🌱 I’m currently learning cs
 - 👯 I’m looking to collaborate on cs
