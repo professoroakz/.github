@@ -14,3 +14,5 @@
 - 🤓 Working @xaoex @simulation @reality @psychadelics
 - 😄 Running repos + evaling + deving projects and things
 - 👾 Owner/Creator of a fuckton of things / a.xyz included bitches
+
+./
