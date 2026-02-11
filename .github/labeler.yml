@@ -3,6 +3,7 @@
 
 documentation:
   - changed-files:
+      - any-glob-to-any-file: ['**/*.md', 'docs/**/*']
       - any-glob-to-any-file: '**/*.md'
   - changed-files:
       - any-glob-to-any-file: 'docs/**/*'
@@ -29,6 +30,11 @@ tests:
 
 configuration:
   - changed-files:
+      - any-glob-to-any-file: ['**/.*.yml', '**/.*.yaml', '**/.*.json', '.editorconfig', '.gitignore']
+
+community:
+  - changed-files:
+      - any-glob-to-any-file: ['CODE_OF_CONDUCT.md', 'CONTRIBUTING.md', 'SECURITY.md', 'SUPPORT.md', 'LICENSE']
       - any-glob-to-any-file:
           ['**/.*.yml', '**/.*.yaml', '**/.*.json', '.editorconfig', '.gitignore']
 
