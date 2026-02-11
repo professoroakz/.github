@@ -1,11 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 💬 GitHub Discussions
-    url: https://github.com/orgs/professoroakz/discussions
-    about: Ask questions and discuss ideas with the community
-  - name: 📚 Organization Profile
-    url: https://github.com/professoroakz
-    about: Learn more about professoroakz projects
-  - name: 🔒 Security Policy
+  - name: Security vulnerability report
     url: https://github.com/professoroakz/.github/security/policy
-    about: Report security vulnerabilities privately
+    about: Please report security vulnerabilities privately (see SECURITY.md).

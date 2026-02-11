@@ -1,31 +1,29 @@
 ---
-name: Bug Report
-about: Create a report to help us improve
-title: '[BUG] '
+name: Bug report
+about: Report something that isn't working
+title: "[Bug] "
 labels: bug
 assignees: ''
-
 ---
 
-## 🐛 Bug Description
-A clear and concise description of what the bug is.
+## Description
+A clear and concise description of the bug.
 
-## 📝 Steps to Reproduce
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Run command '....'
-3. See error
+## Steps to reproduce
+1. ...
+2. ...
+3. ...
 
-## ✅ Expected Behavior
-A clear and concise description of what you expected to happen.
+## Expected behavior
+What you expected to happen.
 
-## 📸 Screenshots
-If applicable, add screenshots to help explain your problem.
+## Actual behavior
+What actually happened.
 
-## 🖥️ Environment
-- **OS**: [e.g. macOS, Ubuntu, Windows]
-- **Version**: [e.g. 22.04]
-- **Browser/Tool**: [e.g. Chrome, VS Code]
+## Environment
+- OS:
+- Browser (if applicable):
+- Version/commit:
 
-## 📎 Additional Context
-Add any other context about the problem here.
+## Additional context
+Logs, screenshots, or other relevant details.

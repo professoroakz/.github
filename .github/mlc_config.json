@@ -1,0 +1,10 @@
+{
+  "ignorePatterns": [
+    { "pattern": "^http://localhost" },
+    { "pattern": "^https://localhost" },
+    { "pattern": "^(mailto:)" }
+  ],
+  "retryOn429": true,
+  "retryCount": 2,
+  "aliveStatusCodes": [200, 201, 202, 203, 204, 206, 301, 302, 303, 307, 308]
+}

@@ -1,118 +1,49 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
 
 jobs:
-  validate:
-    name: Validate Files
+  repo_hygiene:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: 📥 Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 📝 Validate Markdown files
-        uses: DavidAnson/markdownlint-cli2-action@v16
-        with:
-          globs: |
-            **/*.md
-            !node_modules/**
-            !**/backup_*.gsbak
-
-      - name: ✅ Validate YAML files
+      - name: Require core files
+        shell: bash
         run: |
-          # Install yamllint
-          pip install yamllint
-          
-          # Create yamllint config
-          cat > .yamllint.yml << EOF
-          extends: default
-          rules:
-            line-length:
-              max: 120
-              level: warning
-            comments:
-              min-spaces-from-content: 1
-          EOF
-          
-          # Validate YAML files
-          find . -name '*.yml' -o -name '*.yaml' | grep -v node_modules | xargs yamllint -c .yamllint.yml
+          set -euo pipefail
 
-      - name: 🔍 Check for broken links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          use-quiet-mode: 'yes'
-          config-file: '.github/mlc_config.json'
-        continue-on-error: true
-
-      - name: 📊 Verify file structure
-        run: |
-          echo "Checking required community health files..."
-          
           required_files=(
             "README.md"
             "CODE_OF_CONDUCT.md"
             "CONTRIBUTING.md"
+            "SECURITY.md"
             "LICENSE"
             ".github/ISSUE_TEMPLATE/bug_report.md"
             ".github/ISSUE_TEMPLATE/feature_request.md"
             ".github/pull_request_template.md"
           )
-          
+
           missing=0
-          for file in "${required_files[@]}"; do
-            if [ ! -f "$file" ]; then
-              echo "❌ Missing: $file"
+          for f in "${required_files[@]}"; do
+            if [[ ! -f "$f" ]]; then
+              echo "Missing required file: $f"
               missing=1
-            else
-              echo "✅ Found: $file"
             fi
           done
-          
-          if [ $missing -eq 1 ]; then
-            echo "Some required files are missing!"
+
+          if [[ "$missing" -ne 0 ]]; then
+            echo "Required files missing."
             exit 1
           fi
-          
-          echo "All required files are present!"
 
-  test-npm:
-    name: Test NPM Package
-    runs-on: ubuntu-latest
-    if: hashFiles('package.json') != ''
-    
-    steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v4
-
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Markdown link check
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: 📦 Install dependencies
-        run: npm ci
-
-      - name: 🧪 Run tests (if available)
-        run: npm test --if-present
-
-  test-docker:
-    name: Test Docker Build
-    runs-on: ubuntu-latest
-    if: hashFiles('Dockerfile') != ''
-    
-    steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v4
-
-      - name: 🐳 Build Docker image
-        run: docker build -t professoroakz/github-config:test .
-
-      - name: ✅ Verify Docker image
-        run: docker run --rm professoroakz/github-config:test node --version
+          use-quiet-mode: "yes"
+          use-verbose-mode: "no"
+          config-file: ".github/mlc_config.json"

@@ -1,26 +1,5 @@
-# Code Owners
-# These owners will be the default owners for everything in repositories
-# They will be requested for review when someone opens a pull request
-
-# Global owners for all repositories
+# Default owners for this repo and shared config
 * @professoroakz
 
-# Documentation
-*.md @professoroakz
-/docs/ @professoroakz
-
-# Configuration files
-/.github/ @professoroakz
-*.yml @professoroakz
-*.yaml @professoroakz
-*.json @professoroakz
-*.toml @professoroakz
-
-# CI/CD workflows
-/.github/workflows/ @professoroakz
-
-# Community health files
-/CODE_OF_CONDUCT.md @professoroakz
-/CONTRIBUTING.md @professoroakz
-/SECURITY.md @professoroakz
-/LICENSE @professoroakz
+# Workflows
+.github/workflows/ @professoroakz
