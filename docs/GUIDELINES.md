@@ -4,9 +4,11 @@ General guidelines that apply to all repositories under the professoroakz organi
 
 ## Code of Conduct
 
-All repositories follow the Contributor Covenant Code of Conduct. See [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md).
+All repositories follow the Contributor Covenant Code of Conduct. See
+[CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md).
 
 Key principles:
+
 - Be respectful and inclusive
 - Welcome newcomers
 - Accept constructive criticism
@@ -34,6 +36,7 @@ Use descriptive branch names with prefixes:
 - `test/` - Test additions or changes
 
 Examples:
+
 - `feat/add-user-authentication`
 - `fix/resolve-memory-leak`
 - `docs/update-installation-guide`
@@ -51,6 +54,7 @@ Follow conventional commits format:
 ```
 
 **Types**:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation

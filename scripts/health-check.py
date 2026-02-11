@@ -4,11 +4,10 @@ Health check script for GitHub repository
 Validates repository structure, files, and configuration
 """
 
-import os
 import sys
 import json
 from pathlib import Path
-from typing import List, Tuple
+from typing import Tuple
 
 # ANSI color codes
 GREEN = '\033[0;32m'

@@ -17,9 +17,9 @@ const github = require('@professoroakz/github');
 
 // Get package metadata
 const metadata = github.getMetadata();
-console.log(metadata.version);        // "1.3.37"
-console.log(metadata.name);           // "@professoroakz/github"
-console.log(metadata.description);    // Package description
+console.log(metadata.version); // "1.3.37"
+console.log(metadata.name); // "@professoroakz/github"
+console.log(metadata.description); // Package description
 
 // List profile files
 const profileFiles = github.listProfileFiles();
@@ -63,6 +63,7 @@ github-config validate
 ```
 
 **Output:**
+
 ```
 [INFO] Validating repository structure...
 [INFO] ✓ README.md
@@ -80,6 +81,7 @@ github-config info
 ```
 
 **Output:**
+
 ```
 [INFO] Repository Information:
   Location: /path/to/.github
@@ -97,6 +99,7 @@ github-config version
 ```
 
 **Output:**
+
 ```
 github-config version 1.3.37
 ```
@@ -273,27 +276,16 @@ export NPM_TOKEN=your_token_here
 
 ### GITHUB_TOKEN
 
-GitHub token for API access and releases.
+### GITHUB_TOKEN
+
+GitHub token for API access, releases, and GHCR authentication.
 
 ```bash
 export GITHUB_TOKEN=your_token_here
 ```
 
-### DOCKER_USERNAME
-
-Docker Hub username.
-
-```bash
-export DOCKER_USERNAME=your_username
-```
-
-### DOCKER_PASSWORD
-
-Docker Hub password or token.
-
-```bash
-export DOCKER_PASSWORD=your_password
-```
+Note: This repository uses GitHub Container Registry (ghcr.io) for Docker images, which uses
+GITHUB_TOKEN for authentication.
 
 ## Error Handling
 
@@ -325,6 +317,7 @@ This package follows [Semantic Versioning](https://semver.org/).
 ## Support
 
 For API questions or issues:
+
 - Check [SUPPORT.md](../SUPPORT.md)
 - Open an issue on GitHub
 - Review [CONTRIBUTING.md](../CONTRIBUTING.md)
