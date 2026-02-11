@@ -1,0 +1,38 @@
+# Auto-label pull requests based on changed files
+# Format for actions/labeler@v5
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.md'
+  - changed-files:
+      - any-glob-to-any-file: 'docs/**/*'
+
+workflows:
+  - changed-files:
+      - any-glob-to-any-file: '.github/workflows/**/*'
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: ['.github/workflows/**/*', '.github/actions/**/*']
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file: ['package.json', 'package-lock.json', 'Dockerfile']
+
+scripts:
+  - changed-files:
+      - any-glob-to-any-file: ['bin/**/*', 'scripts/**/*']
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file: ['test/**/*', '**/*.test.js', '**/*.spec.js']
+
+configuration:
+  - changed-files:
+      - any-glob-to-any-file:
+          ['**/.*.yml', '**/.*.yaml', '**/.*.json', '.editorconfig', '.gitignore']
+
+community:
+  - changed-files:
+      - any-glob-to-any-file:
+          ['CODE_OF_CONDUCT.md', 'CONTRIBUTING.md', 'SECURITY.md', 'SUPPORT.md', 'LICENSE']

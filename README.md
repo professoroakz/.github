@@ -1,10 +1,22 @@
 # .github
 
-All my cool GitHub cool stuff + fixes and reaches everything I own and work on.
+Organization-wide GitHub configuration and community health files for **professoroakz**.
+
+## What this repo provides
+
+- Issue templates
+- Pull request template
+- CODEOWNERS
+- Security policy
+- Dependabot configuration
+- CI checks for repository hygiene
+
+## How it works
+
+GitHub uses certain files from the `.github` repository as **defaults** for other repositories in
+the org.
 
 ## NPM Package
-
-[![npm version](https://img.shields.io/npm/v/@professoroakz/github.svg)](https://www.npmjs.com/package/@professoroakz/github)
 
 This repository is available as an npm package:
 
@@ -34,10 +46,13 @@ const profilePath = github.getProfilePath('README.md');
 const settingsPath = github.getSettingsPath('.actions');
 ```
 
+## Security
+
+If you discover a vulnerability, please follow the instructions in `SECURITY.md`.
+
 ## License
 
-MIT
-all my cool github cool stuff + fixes and reaches everything I own and work on.
+MIT - See [LICENSE](LICENSE) file for details.
 
 ## Docker Package
 

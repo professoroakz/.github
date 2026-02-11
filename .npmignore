@@ -1,0 +1,46 @@
+# Test files
+test/
+*.test.js
+*.spec.js
+
+# Documentation (keep README.md)
+docs/
+CONTRIBUTING.md
+CHANGELOG.md
+
+# Build and development files
+.github/
+scripts/
+.editorconfig
+.gitignore
+.markdownlint.json
+.prettierrc.json
+.yamllint.yml
+Makefile
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Misc
+backup_*.gsbak
+.aoe
+.dotfiles
+.init
+.make
+.maxopt
+.ocool
+.oktay
+.online
+.reality
+.release
+.xaoexxphonemacbookamd
