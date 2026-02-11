@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, copilot/** ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify Repository
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check file structure
+      run: |
+        echo "Checking required files..."
+        for file in .gitignore README.md Makefile package.json Dockerfile; do
+          if [ ! -f "$file" ]; then
+            echo "ERROR: Missing required file: $file"
+            exit 1
+          fi
+        done
+        echo "✓ All required files present"
+    
+    - name: Verify scripts
+      run: |
+        echo "Verifying scripts..."
+        if [ -d scripts ]; then
+          for script in scripts/*.sh; do
+            if [ -f "$script" ]; then
+              bash -n "$script" || exit 1
+              echo "✓ $script syntax OK"
+            fi
+          done
+        fi
+        echo "✓ Script verification complete"
+    
+    - name: Check for large files
+      run: |
+        echo "Checking for large files (>5MB)..."
+        large_files=$(find . -type f -size +5M -not -path "./.git/*" -not -path "./backups/*" -not -path "./node_modules/*")
+        if [ -n "$large_files" ]; then
+          echo "WARNING: Large files found:"
+          echo "$large_files"
+        else
+          echo "✓ No large files found"
+        fi
+
+  test:
+    name: Test Package
+    runs-on: ubuntu-latest
+    needs: verify
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run tests
+      run: npm test
+      
+    - name: Validate package
+      run: npm pack --dry-run
+
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Lint markdown files
+      uses: DavidAnson/markdownlint-cli2-action@v16
+      with:
+        globs: |
+          **/*.md
+          !node_modules
+
+  makefile-test:
+    name: Test Makefile
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: Test Makefile commands
+      run: |
+        make help
+        make info
+        make stats
+        make install
+        make test
+        make validate
+        echo "✓ All Makefile commands executed successfully"
