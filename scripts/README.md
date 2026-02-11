@@ -31,7 +31,6 @@ Python health check script for validating repository structure.
 - Required files exist
 - JSON file syntax
 - Directory structure
-- File permissions
 
 ### deploy.sh
 

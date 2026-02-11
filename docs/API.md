@@ -273,27 +273,15 @@ export NPM_TOKEN=your_token_here
 
 ### GITHUB_TOKEN
 
-GitHub token for API access and releases.
+### GITHUB_TOKEN
+
+GitHub token for API access, releases, and GHCR authentication.
 
 ```bash
 export GITHUB_TOKEN=your_token_here
 ```
 
-### DOCKER_USERNAME
-
-Docker Hub username.
-
-```bash
-export DOCKER_USERNAME=your_username
-```
-
-### DOCKER_PASSWORD
-
-Docker Hub password or token.
-
-```bash
-export DOCKER_PASSWORD=your_password
-```
+Note: This repository uses GitHub Container Registry (ghcr.io) for Docker images, which uses GITHUB_TOKEN for authentication.
 
 ## Error Handling
 
