@@ -1,0 +1,39 @@
+# Local bash configuration for professoroakz/.github repository
+# Source this file in your ~/.bashrc: source /path/to/.bashrc.local
+
+# Aliases for repository management
+alias github-status='cd /path/to/.github && make status'
+alias github-sync='cd /path/to/.github && make sync'
+alias github-backup='cd /path/to/.github && make backup'
+alias github-stats='cd /path/to/.github && make stats'
+
+# Environment setup
+export GITHUB_CONFIG_ROOT="/path/to/.github"
+
+# Helper functions
+github-quick-commit() {
+    cd "$GITHUB_CONFIG_ROOT" && make quick-commit
+}
+
+github-help() {
+    cd "$GITHUB_CONFIG_ROOT" && make help
+}
+
+github-test() {
+    cd "$GITHUB_CONFIG_ROOT" && make test
+}
+
+github-build() {
+    cd "$GITHUB_CONFIG_ROOT" && make build
+}
+
+github-docker-build() {
+    cd "$GITHUB_CONFIG_ROOT" && make docker-build
+}
+
+# Auto-completion for make targets (if available)
+if command -v complete &> /dev/null; then
+    complete -W "help init clean sync backup verify test install-hooks status stats update quick-commit build package publish docker-build docker-run" github
+fi
+
+echo "✓ GitHub configuration repository aliases loaded"

@@ -1,0 +1,43 @@
+# Local git configuration for professoroakz/.github repository
+# Include this in your ~/.gitconfig:
+# [include]
+#     path = /path/to/.gitconfig.local
+
+[user]
+    # Update with your information
+    name = Your Name
+    email = your.email@example.com
+
+[core]
+    # Use VS Code as default editor (change as needed)
+    editor = code --wait
+    autocrlf = input
+    
+[alias]
+    # Shortcuts for common operations
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    visual = log --graph --oneline --decorate --all
+    
+[push]
+    default = current
+    followTags = true
+    
+[pull]
+    rebase = true
+    
+[merge]
+    ff = false
+    
+[diff]
+    tool = default-difftool
+    
+[color]
+    ui = auto
+    
+[help]
+    autocorrect = 1

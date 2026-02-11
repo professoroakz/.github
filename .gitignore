@@ -1,12 +1,77 @@
 # Package build artifacts
 *.tgz
 node_modules/
+dist/
+build/
+out/
+
+# Python
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.dylib
+*.dll
+*.egg
+*.whl
+venv/
+env/
+ENV/
 
 # OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+desktop.ini
 
 # Editor files
 *.swp
 *.swo
 *~
+.vscode/
+.idea/
+*.iml
+
+# Temporary files
+.tmp
+*.log
+*.bak
+*.backup
+*.tmp
+*.old
+
+# Local configuration  
+.env
+.env.local
+.env.*.local
+
+# Backups
+backups/
+*.dotfiles_backup_*
+
+# Sync conflicts
+*conflict*.md
+
+# Archives
+*.tar.gz
+*.zip
+*.tar
+
+# Package managers
+package-lock.json
+yarn.lock
+npm-debug.log*
+.pnpm-store/
+
+# C/C++ build (if using)
+*.o
+*.a
+*.out
+c_src/build/

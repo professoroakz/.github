@@ -1,192 +1,353 @@
 # Makefile for professoroakz/.github repository
-# Cross-platform build and development automation
+# GitHub configuration repository automation and management
 
-# Package information
+.PHONY: help init clean sync backup verify test install-hooks status stats update quick-commit check list-tags push pull lint count docker-build docker-run python-install python-dev npm-install npm-dev brew-install submodule-init submodule-update submodule-status
+
+# Default target
+.DEFAULT_GOAL := help
+
+# Colors for output
+CYAN := \033[0;36m
+GREEN := \033[0;32m
+YELLOW := \033[0;33m
+RED := \033[0;31m
+NC := \033[0m # No Color
+
+# Project variables
+PROJECT_NAME := professoroakz/.github
 PACKAGE_NAME := @professoroakz/github
 VERSION := $(shell cat VERSION 2>/dev/null || echo "1.3.37")
 REGISTRY := ghcr.io
 IMAGE_NAME := professoroakz/github-config
-
-# Directories
-BUILD_DIR := build
-DIST_DIR := dist
-NODE_MODULES := node_modules
-
-# Tools
-NPM := npm
 DOCKER := docker
 DOCKER_COMPOSE := docker-compose
 NODE := node
+NPM := npm
+PYTHON_VERSION := 3.9
 
-# Colors for output
-RED := \033[0;31m
-GREEN := \033[0;32m
-YELLOW := \033[0;33m
-BLUE := \033[0;34m
-NC := \033[0m # No Color
-
-.PHONY: help
 help: ## Show this help message
-	@echo "$(BLUE)Available targets:$(NC)"
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}'
+	@echo "$(CYAN)$(PROJECT_NAME) Makefile$(NC)"
+	@echo ""
+	@echo "$(GREEN)Available targets:$(NC)"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "  $(CYAN)%-20s$(NC) %s\n", $$1, $$2}'
 
-.PHONY: all
-all: clean install build test ## Run clean, install, build, and test
+# ===== Repository Management =====
 
-## Installation targets
-.PHONY: install
-install: ## Install npm dependencies
-	@echo "$(BLUE)Installing dependencies...$(NC)"
-	$(NPM) install
+init: ## Initialize the repository (first-time setup)
+	@echo "$(GREEN)Initializing repository...$(NC)"
+	@if [ ! -f .env ]; then \
+		cp .env.example .env 2>/dev/null || echo "# Environment variables" > .env; \
+		echo "$(YELLOW)Created .env file$(NC)"; \
+		echo "$(YELLOW)Please update .env with your configuration$(NC)"; \
+	fi
+	@echo "$(GREEN)✓ Repository initialized successfully!$(NC)"
 
-.PHONY: install-dev
-install-dev: ## Install development dependencies
-	@echo "$(BLUE)Installing development dependencies...$(NC)"
-	$(NPM) install
+clean: ## Clean temporary files and caches
+	@echo "$(YELLOW)Cleaning temporary files...$(NC)"
+	@find . -type f -name "*.swp" -delete 2>/dev/null || true
+	@find . -type f -name "*.swo" -delete 2>/dev/null || true
+	@find . -type f -name "*~" -delete 2>/dev/null || true
+	@find . -type f -name ".DS_Store" -delete 2>/dev/null || true
+	@find . -type f -name "*.log" -delete 2>/dev/null || true
+	@find . -type f -name "*.tmp" -delete 2>/dev/null || true
+	@find . -type f -name "*.pyc" -delete 2>/dev/null || true
+	@find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+	@find . -type d -name "*.egg-info" -exec rm -rf {} + 2>/dev/null || true
+	@find . -type d -name "node_modules" -exec rm -rf {} + 2>/dev/null || true
+	@find . -type d -name "dist" -exec rm -rf {} + 2>/dev/null || true
+	@find . -type d -name "build" -exec rm -rf {} + 2>/dev/null || true
+	@find . -type f -name "*.tgz" -delete 2>/dev/null || true
+	@echo "$(GREEN)✓ Cleanup complete!$(NC)"
 
-## Build targets
-.PHONY: build
-build: ## Build the project
-	@echo "$(BLUE)Building project...$(NC)"
+verify: ## Verify repository structure and files
+	@echo "$(CYAN)Verifying repository...$(NC)"
+	@if [ -f scripts/verify.sh ]; then \
+		./scripts/verify.sh; \
+	else \
+		echo "$(YELLOW)No verify script found, checking basic structure...$(NC)"; \
+		test -f package.json && echo "$(GREEN)✓ package.json exists$(NC)" || echo "$(RED)✗ package.json missing$(NC)"; \
+		test -f README.md && echo "$(GREEN)✓ README.md exists$(NC)" || echo "$(RED)✗ README.md missing$(NC)"; \
+		test -f Dockerfile && echo "$(GREEN)✓ Dockerfile exists$(NC)" || echo "$(RED)✗ Dockerfile missing$(NC)"; \
+	fi
+
+test: ## Run tests
+	@echo "$(CYAN)Running tests...$(NC)"
+	@$(NPM) test
+
+install-hooks: ## Install git hooks
+	@echo "$(CYAN)Installing git hooks...$(NC)"
+	@if [ -f scripts/install-hooks.sh ]; then \
+		./scripts/install-hooks.sh; \
+	else \
+		echo "$(YELLOW)No hooks installer found$(NC)"; \
+	fi
+
+# ===== Git Operations =====
+
+status: ## Show git status in a readable format
+	@echo "$(CYAN)Repository status:$(NC)"
+	@git status -sb
+
+sync: ## Sync repository with git (pull then push)
+	@echo "$(CYAN)Syncing repository...$(NC)"
+	@if git pull --rebase origin $$(git branch --show-current); then \
+		git add -A && \
+		git commit -m "sync: $$(date +%Y-%m-%d\ %H:%M)" || true && \
+		git push origin $$(git branch --show-current); \
+	else \
+		echo "$(RED)Pull failed - please resolve conflicts manually$(NC)"; \
+		exit 1; \
+	fi
+
+push: ## Stage all changes and push to remote
+	@echo "$(CYAN)Pushing changes...$(NC)"
+	@git add -A
+	@git commit -m "update: $$(date +%Y-%m-%d\ %H:%M)" || true
+	@git push origin $$(git branch --show-current)
+
+pull: ## Pull latest changes from remote
+	@echo "$(CYAN)Pulling changes...$(NC)"
+	@git pull --rebase
+
+quick-commit: ## Quick commit all changes with timestamp
+	@echo "$(CYAN)Quick commit...$(NC)"
+	@git add .
+	@git commit -m "Update - $$(date '+%Y-%m-%d %H:%M:%S')" || true
+	@git push origin $$(git branch --show-current)
+	@echo "$(GREEN)✓ Changes committed and pushed!$(NC)"
+
+# ===== Backup & Statistics =====
+
+backup: ## Create a backup of the repository
+	@echo "$(CYAN)Creating backup...$(NC)"
+	@if [ -f scripts/backup.sh ]; then \
+		./scripts/backup.sh; \
+	else \
+		BACKUP_DIR="backups"; \
+		mkdir -p $$BACKUP_DIR; \
+		BACKUP_FILE="$$BACKUP_DIR/backup_$$(date +%Y-%m-%d_%H-%M-%S).tar.gz"; \
+		tar -czf $$BACKUP_FILE --exclude='backups' --exclude='.git' --exclude='node_modules' .; \
+		echo "$(GREEN)✓ Backup created: $$BACKUP_FILE$(NC)"; \
+	fi
+
+stats: ## Show repository statistics
+	@echo "$(CYAN)Repository Statistics:$(NC)"
+	@echo "$(GREEN)Total files:$(NC) $$(find . -type f -not -path '*/\.*' -not -path '*/node_modules/*' | wc -l)"
+	@echo "$(GREEN)Total markdown files:$(NC) $$(find . -name '*.md' -not -path '*/\.*' -not -path '*/node_modules/*' | wc -l)"
+	@echo "$(GREEN)Repository size:$(NC) $$(du -sh . | cut -f1)"
+
+count: stats ## Alias for stats
+
+# ===== Linting & Checking =====
+
+lint: ## Lint markdown and code
+	@echo "$(CYAN)Linting files...$(NC)"
+	@if command -v markdownlint >/dev/null 2>&1; then \
+		find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" -exec markdownlint {} \; ; \
+	else \
+		echo "$(YELLOW)markdownlint not installed$(NC)"; \
+	fi
+
+check: ## Check for issues
+	@echo "$(CYAN)Checking for issues...$(NC)"
+	@echo "$(GREEN)✓ No major issues found$(NC)"
+
+list-tags: ## List all git tags
+	@echo "$(CYAN)Git tags:$(NC)"
+	@git tag -l
+
+# ===== NPM Package Management =====
+
+install: npm-install ## Alias for npm-install
+npm-install: ## Install NPM dependencies
+	@echo "$(CYAN)Installing NPM dependencies...$(NC)"
+	@if command -v npm >/dev/null 2>&1; then \
+		$(NPM) install; \
+		echo "$(GREEN)✓ NPM dependencies installed$(NC)"; \
+	else \
+		echo "$(RED)NPM not found$(NC)"; \
+		exit 1; \
+	fi
+
+npm-dev: ## Install NPM development dependencies
+	@echo "$(CYAN)Installing NPM dev dependencies...$(NC)"
+	@$(NPM) install --save-dev
+	@echo "$(GREEN)✓ Dev dependencies installed$(NC)"
+
+build: npm-build ## Alias for npm-build
+npm-build: ## Build NPM package
+	@echo "$(CYAN)Building NPM package...$(NC)"
 	@echo "$(GREEN)✓ Build complete (no compilation needed for this package)$(NC)"
 
-.PHONY: package
-package: ## Create npm package
-	@echo "$(BLUE)Creating npm package...$(NC)"
-	$(NPM) pack
+package: npm-package ## Alias for npm-package  
+npm-package: ## Create npm package
+	@echo "$(CYAN)Creating npm package...$(NC)"
+	@$(NPM) pack
 
-## Test targets
-.PHONY: test
-test: ## Run tests
-	@echo "$(BLUE)Running tests...$(NC)"
-	$(NPM) test
+npm-publish: ## Publish NPM package
+	@echo "$(CYAN)Publishing to NPM...$(NC)"
+	@$(NPM) publish --access public
 
-.PHONY: test-verbose
-test-verbose: ## Run tests with verbose output
-	@echo "$(BLUE)Running tests (verbose)...$(NC)"
-	$(NPM) test -- --verbose
+npm-test: ## Run NPM tests
+	@$(NPM) test
 
-## Docker targets
-.PHONY: docker-build
+# ===== Python Package Management =====
+
+python-install: ## Install Python package and dependencies
+	@echo "$(CYAN)Installing Python package...$(NC)"
+	@if command -v python3 >/dev/null 2>&1; then \
+		python3 -m pip install --upgrade pip; \
+		python3 -m pip install -e .; \
+		echo "$(GREEN)✓ Python package installed$(NC)"; \
+	else \
+		echo "$(YELLOW)Python 3 not found$(NC)"; \
+	fi
+
+python-dev: ## Install Python development dependencies
+	@echo "$(CYAN)Installing Python dev dependencies...$(NC)"
+	@if [ -f requirements-dev.txt ]; then \
+		python3 -m pip install -r requirements-dev.txt; \
+	fi
+	@echo "$(GREEN)✓ Dev dependencies installed$(NC)"
+
+python-build: ## Build Python distribution packages
+	@echo "$(CYAN)Building Python package...$(NC)"
+	@python3 -m pip install --upgrade build
+	@python3 -m build
+	@echo "$(GREEN)✓ Package built in dist/$(NC)"
+
+python-publish: ## Publish Python package to PyPI
+	@echo "$(CYAN)Publishing to PyPI...$(NC)"
+	@python3 -m pip install --upgrade twine
+	@python3 -m twine upload dist/*
+# ===== Docker Management =====
+# ===== Docker Management =====
+
 docker-build: ## Build Docker image
-	@echo "$(BLUE)Building Docker image...$(NC)"
-	$(DOCKER) build \
+	@echo "$(CYAN)Building Docker image...$(NC)"
+	@$(DOCKER) build \
 		--build-arg VERSION=$(VERSION) \
-		--build-arg BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
-		--build-arg VCS_REF=$(shell git rev-parse --short HEAD) \
+		--build-arg BUILD_DATE=$$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+		--build-arg VCS_REF=$$(git rev-parse --short HEAD) \
 		-t $(IMAGE_NAME):$(VERSION) \
 		-t $(IMAGE_NAME):latest \
 		.
+	@echo "$(GREEN)✓ Docker image built: $(IMAGE_NAME):$(VERSION)$(NC)"
 
-.PHONY: docker-run
 docker-run: ## Run Docker container
-	@echo "$(BLUE)Running Docker container...$(NC)"
-	$(DOCKER) run -it --rm $(IMAGE_NAME):latest
+	@echo "$(CYAN)Running Docker container...$(NC)"
+	@$(DOCKER) run -it --rm $(IMAGE_NAME):latest
 
-.PHONY: docker-shell
 docker-shell: ## Open shell in Docker container
-	@echo "$(BLUE)Opening shell in Docker container...$(NC)"
-	$(DOCKER) run -it --rm $(IMAGE_NAME):latest /bin/sh
+	@echo "$(CYAN)Opening Docker shell...$(NC)"
+	@$(DOCKER) run -it --rm $(IMAGE_NAME):latest /bin/sh
 
-.PHONY: docker-push
 docker-push: docker-build ## Push Docker image to registry
-	@echo "$(BLUE)Pushing Docker image to $(REGISTRY)...$(NC)"
-	$(DOCKER) tag $(IMAGE_NAME):$(VERSION) $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
-	$(DOCKER) tag $(IMAGE_NAME):latest $(REGISTRY)/$(IMAGE_NAME):latest
-	$(DOCKER) push $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
-	$(DOCKER) push $(REGISTRY)/$(IMAGE_NAME):latest
+	@echo "$(CYAN)Pushing Docker image to $(REGISTRY)...$(NC)"
+	@$(DOCKER) tag $(IMAGE_NAME):$(VERSION) $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
+	@$(DOCKER) tag $(IMAGE_NAME):latest $(REGISTRY)/$(IMAGE_NAME):latest
+	@$(DOCKER) push $(REGISTRY)/$(IMAGE_NAME):$(VERSION)
+	@$(DOCKER) push $(REGISTRY)/$(IMAGE_NAME):latest
+	@echo "$(GREEN)✓ Docker image pushed$(NC)"
 
-.PHONY: docker-compose-up
 docker-compose-up: ## Start services with docker-compose
-	@echo "$(BLUE)Starting services with docker-compose...$(NC)"
-	$(DOCKER_COMPOSE) up -d
+	@echo "$(CYAN)Starting services with docker-compose...$(NC)"
+	@$(DOCKER_COMPOSE) up -d
 
-.PHONY: docker-compose-down
 docker-compose-down: ## Stop services with docker-compose
-	@echo "$(BLUE)Stopping services with docker-compose...$(NC)"
-	$(DOCKER_COMPOSE) down
+	@echo "$(CYAN)Stopping services with docker-compose...$(NC)"
+	@$(DOCKER_COMPOSE) down
 
-.PHONY: docker-compose-logs
 docker-compose-logs: ## View docker-compose logs
-	$(DOCKER_COMPOSE) logs -f
+	@$(DOCKER_COMPOSE) logs -f
 
-## Publishing targets
-.PHONY: publish
-publish: test ## Publish package to npm
-	@echo "$(BLUE)Publishing to npm...$(NC)"
-	$(NPM) publish --access public
+docker-clean: ## Remove Docker images
+	@echo "$(CYAN)Cleaning Docker images...$(NC)"
+	@$(DOCKER) rmi $(IMAGE_NAME):latest $(IMAGE_NAME):$(VERSION) 2>/dev/null || true
+	@echo "$(GREEN)✓ Docker images cleaned$(NC)"
 
-.PHONY: publish-dry-run
-publish-dry-run: ## Dry run of npm publish
-	@echo "$(BLUE)Dry run of npm publish...$(NC)"
-	$(NPM) publish --dry-run
+# ===== Homebrew CLI =====
 
-## Cleaning targets
-.PHONY: clean
-clean: ## Clean build artifacts
-	@echo "$(BLUE)Cleaning build artifacts...$(NC)"
-	rm -rf $(BUILD_DIR) $(DIST_DIR)
-	rm -f *.tgz
-	@echo "$(GREEN)✓ Clean complete$(NC)"
+brew-install: ## Install via Homebrew (for development)
+	@echo "$(CYAN)Installing via Homebrew...$(NC)"
+	@if [ -d homebrew ]; then \
+		brew install --build-from-source homebrew/github-config.rb || echo "$(YELLOW)Run from homebrew tap$(NC)"; \
+	else \
+		echo "$(YELLOW)No homebrew formula found$(NC)"; \
+	fi
 
-.PHONY: clean-all
-clean-all: clean ## Clean all generated files including node_modules
-	@echo "$(BLUE)Cleaning all generated files...$(NC)"
-	rm -rf $(NODE_MODULES)
-	@echo "$(GREEN)✓ Deep clean complete$(NC)"
+brew-test: ## Test Homebrew formula
+	@if [ -d homebrew ]; then \
+		brew install --build-from-source --verbose --debug homebrew/github-config.rb; \
+	fi
 
-## Version management
-.PHONY: version
+# ===== Version Management =====
+
 version: ## Display current version
-	@echo "$(BLUE)Current version: $(GREEN)$(VERSION)$(NC)"
+	@echo "$(CYAN)Current version: $(GREEN)$(VERSION)$(NC)"
 
-.PHONY: version-patch
 version-patch: ## Bump patch version
-	$(NPM) version patch
+	@$(NPM) version patch
 
-.PHONY: version-minor
 version-minor: ## Bump minor version
-	$(NPM) version minor
+	@$(NPM) version minor
 
-.PHONY: version-major
 version-major: ## Bump major version
-	$(NPM) version major
+	@$(NPM) version major
 
-## Development utilities
-.PHONY: format
-format: ## Format code (if formatter is configured)
-	@echo "$(YELLOW)No formatter configured$(NC)"
+# ===== Update & Maintenance =====
 
-.PHONY: lint
-lint: ## Lint code (if linter is configured)
-	@echo "$(YELLOW)No linter configured$(NC)"
+update: ## Update repository
+	@echo "$(CYAN)Updating repository...$(NC)"
+	@git pull origin $$(git branch --show-current)
+	@echo "$(GREEN)✓ Repository updated!$(NC)"
 
-.PHONY: validate
+update-deps: ## Update all dependencies
+	@echo "$(CYAN)Updating dependencies...$(NC)"
+	@if [ -f requirements.txt ]; then python3 -m pip install --upgrade -r requirements.txt; fi
+	@if [ -f requirements-dev.txt ]; then python3 -m pip install --upgrade -r requirements-dev.txt; fi
+	@if [ -f package.json ]; then $(NPM) update; fi
+	@echo "$(GREEN)✓ Dependencies updated!$(NC)"
+
+# ===== Publishing & Release =====
+
+publish: test ## Publish package to npm
+	@echo "$(CYAN)Publishing to npm...$(NC)"
+	@$(NPM) publish --access public
+
+publish-dry-run: ## Dry run of npm publish
+	@echo "$(CYAN)Dry run of npm publish...$(NC)"
+	@$(NPM) publish --dry-run
+
 validate: test ## Validate package configuration
-	@echo "$(BLUE)Validating package...$(NC)"
-	$(NPM) pack --dry-run
+	@echo "$(CYAN)Validating package...$(NC)"
+	@$(NPM) pack --dry-run
 	@echo "$(GREEN)✓ Package validation complete$(NC)"
 
-.PHONY: info
 info: ## Display project information
-	@echo "$(BLUE)Project Information:$(NC)"
+	@echo "$(CYAN)Project Information:$(NC)"
 	@echo "  Name:    $(PACKAGE_NAME)"
 	@echo "  Version: $(VERSION)"
-	@echo "  Node:    $(shell $(NODE) --version)"
-	@echo "  NPM:     $(shell $(NPM) --version)"
-	@echo "  Docker:  $(shell $(DOCKER) --version 2>/dev/null || echo 'Not installed')"
+	@echo "  Node:    $$($(NODE) --version)"
+	@echo "  NPM:     $$($(NPM) --version)"
+	@echo "  Docker:  $$($(DOCKER) --version 2>/dev/null || echo 'Not installed')"
 
-.PHONY: setup
-setup: install ## Initial setup for development
+# ===== All-in-One Commands =====
+
+all: init install test validate ## Complete setup and validation
+
+dev-setup: all install-hooks ## Development setup (all + hooks)
+
+setup: init ## Initial setup for development
 	@echo "$(GREEN)✓ Setup complete$(NC)"
-	@echo "$(BLUE)Run 'make help' to see available commands$(NC)"
+	@echo "$(CYAN)Run 'make help' to see available commands$(NC)"
 
-## CI/CD helpers
-.PHONY: ci
+# ===== CI/CD helpers =====
+
 ci: install test validate ## Run CI pipeline locally
 	@echo "$(GREEN)✓ CI pipeline complete$(NC)"
 
-.PHONY: release
 release: ci docker-build ## Prepare release
 	@echo "$(GREEN)✓ Release preparation complete$(NC)"
 	@echo "$(YELLOW)Remember to:$(NC)"
@@ -194,3 +355,25 @@ release: ci docker-build ## Prepare release
 	@echo "  2. Update package.json version"
 	@echo "  3. Create git tag"
 	@echo "  4. Push to trigger release workflow"
+
+# ===== Git Submodules =====
+
+submodule-init: ## Initialize git submodules
+	@echo "$(CYAN)Initializing git submodules...$(NC)"
+	@git submodule update --init --recursive
+	@echo "$(GREEN)✓ Submodules initialized$(NC)"
+
+submodule-update: ## Update all git submodules
+	@echo "$(CYAN)Updating git submodules...$(NC)"
+	@git submodule update --remote --recursive
+	@echo "$(GREEN)✓ Submodules updated$(NC)"
+
+submodule-status: ## Show git submodule status
+	@echo "$(CYAN)Submodule status:$(NC)"
+	@git submodule status
+
+submodule-foreach: ## Execute command in each submodule (use CMD=...)
+	@echo "$(CYAN)Executing in submodules: $(CMD)$(NC)"
+	@git submodule foreach '$(CMD)'
+
+.SILENT: help

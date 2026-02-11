@@ -1,0 +1,34 @@
+# Local zsh configuration for professoroakz/.github repository
+# Source this file in your ~/.zshrc: source /path/to/.zshrc.local
+
+# Aliases for repository management
+alias github-status='cd /path/to/.github && make status'
+alias github-sync='cd /path/to/.github && make sync'
+alias github-backup='cd /path/to/.github && make backup'
+alias github-stats='cd /path/to/.github && make stats'
+
+# Environment setup
+export GITHUB_CONFIG_ROOT="/path/to/.github"
+
+# Helper functions
+github-quick-commit() {
+    cd "$GITHUB_CONFIG_ROOT" && make quick-commit
+}
+
+github-help() {
+    cd "$GITHUB_CONFIG_ROOT" && make help
+}
+
+github-test() {
+    cd "$GITHUB_CONFIG_ROOT" && make test
+}
+
+github-build() {
+    cd "$GITHUB_CONFIG_ROOT" && make build
+}
+
+github-docker-build() {
+    cd "$GITHUB_CONFIG_ROOT" && make docker-build
+}
+
+echo "✓ GitHub configuration repository aliases loaded"

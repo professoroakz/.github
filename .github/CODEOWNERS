@@ -1,0 +1,33 @@
+# Code Owners for professoroakz/.github repository
+# These owners will be the default owners for everything in the repo.
+# Unless a later match takes precedence, they will be requested for
+# review when someone opens a pull request.
+
+# Global owners
+* @professoroakz
+
+# GitHub Actions workflows
+/.github/workflows/ @professoroakz
+
+# Security and community health files
+/SECURITY.md @professoroakz
+/CONTRIBUTING.md @professoroakz
+/.github/ISSUE_TEMPLATE/ @professoroakz
+
+# Build and automation
+/Makefile @professoroakz
+/Dockerfile @professoroakz
+/docker-compose.yml @professoroakz
+/scripts/ @professoroakz
+
+# Package configuration
+/package.json @professoroakz
+/pyproject.toml @professoroakz
+/setup.py @professoroakz
+
+# Homebrew formula
+/homebrew/ @professoroakz
+/Formula/ @professoroakz
+
+# Documentation
+*.md @professoroakz
