@@ -54,6 +54,11 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         -v|--version)
+            if [[ -z "${2:-}" ]]; then
+                log_error "Missing version argument for --version"
+                show_help
+                exit 1
+            fi
             VERSION="$2"
             shift 2
             ;;
@@ -66,7 +71,11 @@ done
 
 # Get version from package.json if not specified
 if [[ -z "$VERSION" ]] && [[ -f "$ROOT_DIR/package.json" ]]; then
-    VERSION=$(node -p "require('$ROOT_DIR/package.json').version")
+    if command -v node &>/dev/null; then
+        VERSION=$(node -p "require('$ROOT_DIR/package.json').version")
+    else
+        log_warn "Node.js not found, version detection skipped"
+    fi
 fi
 
 log_info "Deployment target: ${TARGET:-none}"
@@ -75,6 +84,8 @@ log_info "Version: ${VERSION:-unknown}"
 
 deploy_npm() {
     log_info "Deploying to NPM..."
+    
+    cd "$ROOT_DIR" || exit 1
     
     if [[ "$DRY_RUN" == "true" ]]; then
         log_info "Would run: npm publish --dry-run"
@@ -87,6 +98,8 @@ deploy_npm() {
 
 deploy_docker() {
     log_info "Building and pushing Docker image..."
+    
+    cd "$ROOT_DIR" || exit 1
     
     IMAGE_NAME="ghcr.io/professoroakz/github-config"
     

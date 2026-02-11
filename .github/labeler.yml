@@ -1,8 +1,12 @@
 # Auto-label pull requests based on changed files
+# Format for actions/labeler@v5
 
 documentation:
   - changed-files:
       - any-glob-to-any-file: ['**/*.md', 'docs/**/*']
+      - any-glob-to-any-file: '**/*.md'
+  - changed-files:
+      - any-glob-to-any-file: 'docs/**/*'
 
 workflows:
   - changed-files:
@@ -31,3 +35,10 @@ configuration:
 community:
   - changed-files:
       - any-glob-to-any-file: ['CODE_OF_CONDUCT.md', 'CONTRIBUTING.md', 'SECURITY.md', 'SUPPORT.md', 'LICENSE']
+      - any-glob-to-any-file:
+          ['**/.*.yml', '**/.*.yaml', '**/.*.json', '.editorconfig', '.gitignore']
+
+community:
+  - changed-files:
+      - any-glob-to-any-file:
+          ['CODE_OF_CONDUCT.md', 'CONTRIBUTING.md', 'SECURITY.md', 'SUPPORT.md', 'LICENSE']

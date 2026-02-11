@@ -94,7 +94,7 @@ name: My Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -103,7 +103,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Run my task
         run: echo "Hello, World!"
 ```

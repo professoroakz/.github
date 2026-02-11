@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
@@ -10,9 +8,7 @@
       "automerge": true
     }
   ],
-  "schedule": [
-    "before 6am on Monday"
-  ],
+  "schedule": ["before 6am on Monday"],
   "labels": ["dependencies"],
   "assignees": ["@professoroakz"],
   "lockFileMaintenance": {

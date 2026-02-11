@@ -3,7 +3,7 @@ name: Auto Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 4 * * 1" # weekly
+    - cron: '0 4 * * 1' # weekly
 
 permissions:
   contents: write
