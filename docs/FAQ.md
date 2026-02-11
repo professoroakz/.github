@@ -163,10 +163,10 @@ Common issues:
 
 ### Tests are failing
 
-Run with verbose output:
+Run the test suite:
 
 ```bash
-./test/run-tests.sh -v
+./test/run-tests.sh
 ```
 
 Check for missing files:

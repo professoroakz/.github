@@ -36,25 +36,25 @@ echo "Running tests..."
 echo ""
 
 # Test required files exist
-run_test "README.md exists" "test -f '$ROOT_DIR/README.md'"
-run_test "LICENSE exists" "test -f '$ROOT_DIR/LICENSE'"
-run_test "CODE_OF_CONDUCT.md exists" "test -f '$ROOT_DIR/CODE_OF_CONDUCT.md'"
-run_test "CONTRIBUTING.md exists" "test -f '$ROOT_DIR/CONTRIBUTING.md'"
-run_test "SECURITY.md exists" "test -f '$ROOT_DIR/SECURITY.md'"
-run_test "SUPPORT.md exists" "test -f '$ROOT_DIR/SUPPORT.md'"
-run_test "CHANGELOG.md exists" "test -f '$ROOT_DIR/CHANGELOG.md'"
+run_test "README.md exists" "test -f \"$ROOT_DIR/README.md\""
+run_test "LICENSE exists" "test -f \"$ROOT_DIR/LICENSE\""
+run_test "CODE_OF_CONDUCT.md exists" "test -f \"$ROOT_DIR/CODE_OF_CONDUCT.md\""
+run_test "CONTRIBUTING.md exists" "test -f \"$ROOT_DIR/CONTRIBUTING.md\""
+run_test "SECURITY.md exists" "test -f \"$ROOT_DIR/SECURITY.md\""
+run_test "SUPPORT.md exists" "test -f \"$ROOT_DIR/SUPPORT.md\""
+run_test "CHANGELOG.md exists" "test -f \"$ROOT_DIR/CHANGELOG.md\""
 
 # Test .github directory structure
-run_test ".github/CODEOWNERS exists" "test -f '$ROOT_DIR/.github/CODEOWNERS'"
-run_test ".github/FUNDING.yml exists" "test -f '$ROOT_DIR/.github/FUNDING.yml'"
-run_test ".github/dependabot.yml exists" "test -f '$ROOT_DIR/.github/dependabot.yml'"
-run_test ".github/SECURITY.md exists" "test -f '$ROOT_DIR/.github/SECURITY.md'"
-run_test ".github/pull_request_template.md exists" "test -f '$ROOT_DIR/.github/pull_request_template.md'"
+run_test ".github/CODEOWNERS exists" "test -f \"$ROOT_DIR/.github/CODEOWNERS\""
+run_test ".github/FUNDING.yml exists" "test -f \"$ROOT_DIR/.github/FUNDING.yml\""
+run_test ".github/dependabot.yml exists" "test -f \"$ROOT_DIR/.github/dependabot.yml\""
+run_test ".github/SECURITY.md exists" "test -f \"$ROOT_DIR/.github/SECURITY.md\""
+run_test ".github/pull_request_template.md exists" "test -f \"$ROOT_DIR/.github/pull_request_template.md\""
 
 # Test issue templates
-run_test "Bug report template exists" "test -f '$ROOT_DIR/.github/ISSUE_TEMPLATE/bug_report.md'"
-run_test "Feature request template exists" "test -f '$ROOT_DIR/.github/ISSUE_TEMPLATE/feature_request.md'"
-run_test "Issue template config exists" "test -f '$ROOT_DIR/.github/ISSUE_TEMPLATE/config.yml'"
+run_test "Bug report template exists" "test -f \"$ROOT_DIR/.github/ISSUE_TEMPLATE/bug_report.md\""
+run_test "Feature request template exists" "test -f \"$ROOT_DIR/.github/ISSUE_TEMPLATE/feature_request.md\""
+run_test "Issue template config exists" "test -f \"$ROOT_DIR/.github/ISSUE_TEMPLATE/config.yml\""
 
 # Test workflows
 run_test "CI workflow exists" "test -f '$ROOT_DIR/.github/workflows/ci.yml'"
@@ -75,7 +75,7 @@ run_test "bin/github-config is executable" "test -x '$ROOT_DIR/bin/github-config
 
 # Test package.json validity
 if command -v node &>/dev/null; then
-    run_test "package.json is valid JSON" "node -e 'require(\"$ROOT_DIR/package.json\")'"
+    run_test "package.json is valid JSON" "node -e \"require('$ROOT_DIR/package.json')\""
 fi
 
 # Summary

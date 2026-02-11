@@ -42,10 +42,8 @@ General contribution steps:
 
 Most projects are licensed under the MIT License unless otherwise specified.
 
----
 
 _Building better tools, one commit at a time._ ✨
-
 ## Hi there 👋
 
 - 👽 Applying + Making + Started Core Movement(s) around the 90s
