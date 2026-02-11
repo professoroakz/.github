@@ -13,6 +13,7 @@ Issue templates help standardize bug reports, feature requests, and other contri
 Use this template when reporting bugs or unexpected behavior.
 
 **Sections**:
+
 - **Description**: Clear description of the bug
 - **Steps to reproduce**: Detailed reproduction steps
 - **Expected behavior**: What should happen
@@ -27,6 +28,7 @@ Use this template when reporting bugs or unexpected behavior.
 Use this template when suggesting new features or improvements.
 
 **Sections**:
+
 - **Problem**: What problem are you trying to solve?
 - **Proposal**: What do you want to happen?
 - **Alternatives**: Other approaches considered
@@ -37,6 +39,7 @@ Use this template when suggesting new features or improvements.
 **File**: `.github/ISSUE_TEMPLATE/config.yml`
 
 Configures issue template behavior:
+
 - Disables blank issues (forces template use)
 - Provides contact links for security reports
 
@@ -47,6 +50,7 @@ Configures issue template behavior:
 Used automatically when creating pull requests.
 
 **Sections**:
+
 - **Summary**: Brief description of changes
 - **Changes**: Type checkboxes (bug fix, feature, docs, chore)
 - **Validation**: How changes were tested
@@ -95,15 +99,17 @@ Used automatically when creating pull requests.
 ---
 name: Custom Template
 about: Description of when to use this template
-title: "[PREFIX] "
+title: '[PREFIX] '
 labels: custom-label
 assignees: ''
 ---
 
 ## Section 1
+
 Description...
 
 ## Section 2
+
 More details...
 ```
 
@@ -140,13 +146,16 @@ Use HTML comments for optional sections:
 
 ```markdown
 <!-- Delete this section if not applicable -->
+
 ## Optional Section
+
 ...
 ```
 
 ## Multi-Language Support
 
 For international projects, consider:
+
 - Creating templates in multiple languages
 - Using clear, simple English
 - Providing translation guidance

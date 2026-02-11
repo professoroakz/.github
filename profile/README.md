@@ -4,18 +4,23 @@ Welcome to the professoroakz organization! 👋
 
 ## About
 
-Organization focused on building tools, configurations, and projects that enhance developer productivity and workflow automation.
+Organization focused on building tools, configurations, and projects that enhance developer
+productivity and workflow automation.
 
 ## 🚀 Key Projects
 
-- **[.github](https://github.com/professoroakz/.github)** - Organization-wide community health files and GitHub configuration
-- **[obsidian-dotfiles](https://github.com/professoroakz/obsidian-dotfiles)** - Obsidian vault configuration and automation tools
+- **[.github](https://github.com/professoroakz/.github)** - Organization-wide community health files
+  and GitHub configuration
+- **[obsidian-dotfiles](https://github.com/professoroakz/obsidian-dotfiles)** - Obsidian vault
+  configuration and automation tools
 
 ## 🤝 Contributing
 
-We welcome contributions to all our projects! Please check individual repository CONTRIBUTING.md files for specific guidelines.
+We welcome contributions to all our projects! Please check individual repository CONTRIBUTING.md
+files for specific guidelines.
 
 General contribution steps:
+
 1. Check existing issues or create a new one
 2. Fork the repository
 3. Create a feature branch
@@ -39,7 +44,8 @@ Most projects are licensed under the MIT License unless otherwise specified.
 
 ---
 
-*Building better tools, one commit at a time.* ✨
+_Building better tools, one commit at a time._ ✨
+
 ## Hi there 👋
 
 - 👽 Applying + Making + Started Core Movement(s) around the 90s
