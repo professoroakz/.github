@@ -3,13 +3,14 @@
 
 documentation:
   - changed-files:
-      - any-glob-to-any-file: '**/*.md'
-  - changed-files:
-      - any-glob-to-any-file: 'docs/**/*'
+      - any-glob-to-any-file:
+          - '**/*.md'
+          - 'docs/**/*'
 
 workflows:
   - changed-files:
-      - any-glob-to-any-file: '.github/workflows/**/*'
+      - any-glob-to-any-file:
+          - '.github/workflows/**/*'
 
 ci:
   - changed-files:
