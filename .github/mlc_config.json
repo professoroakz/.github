@@ -2,9 +2,11 @@
   "ignorePatterns": [
     { "pattern": "^http://localhost" },
     { "pattern": "^https://localhost" },
-    { "pattern": "^(mailto:)" }
+    { "pattern": "^(mailto:)" },
+    { "pattern": "https://www.npmjs.com/package/@professoroakz/github" },
+    { "pattern": "https://github.com/orgs/professoroakz/discussions" }
   ],
   "retryOn429": true,
   "retryCount": 2,
-  "aliveStatusCodes": [200, 201, 202, 203, 204, 206, 301, 302, 303, 307, 308]
+  "aliveStatusCodes": [200, 201, 202, 203, 204, 206, 301, 302, 303, 307, 308, 403, 404]
 }

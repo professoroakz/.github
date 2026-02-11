@@ -15,8 +15,6 @@ GitHub uses certain files from the `.github` repository as **defaults** for othe
 
 ## NPM Package
 
-[![npm version](https://img.shields.io/npm/v/@professoroakz/github.svg)](https://www.npmjs.com/package/@professoroakz/github)
-
 This repository is available as an npm package:
 
 ```bash

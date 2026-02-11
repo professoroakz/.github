@@ -24,9 +24,9 @@ General contribution steps:
 
 ## 📚 Resources
 
-- [Code of Conduct](https://github.com/professoroakz/.github/blob/main/CODE_OF_CONDUCT.md)
-- [Security Policy](https://github.com/professoroakz/.github/blob/main/SECURITY.md)
-- [Support](https://github.com/professoroakz/.github/blob/main/SUPPORT.md)
+- [Code of Conduct](../CODE_OF_CONDUCT.md)
+- [Security Policy](../SECURITY.md)
+- [Support](../SUPPORT.md)
 
 ## 📧 Contact
 

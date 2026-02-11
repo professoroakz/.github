@@ -8,9 +8,9 @@ If you need help with projects under the professoroakz organization:
 - Check the repository's README for project-specific documentation
 - Review the [organization profile](https://github.com/professoroakz)
 
-### 💬 Discussions
-- Use [GitHub Discussions](https://github.com/orgs/professoroakz/discussions) for questions and community support
-- Search existing discussions before creating a new one
+### 💬 Questions & Support
+- Use the repository's Issues section for questions
+- Check existing issues before creating a new one
 
 ### 🐛 Bug Reports
 - Use the bug report template in the repository's Issues section
