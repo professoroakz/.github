@@ -1,0 +1,40 @@
+# Auto-label pull requests based on changed files
+
+documentation:
+  - '**/*.md'
+  - 'docs/**/*'
+
+workflows:
+  - '.github/workflows/**/*'
+
+ci:
+  - '.github/workflows/**/*'
+  - '.github/actions/**/*'
+
+dependencies:
+  - 'package.json'
+  - 'package-lock.json'
+  - 'Dockerfile'
+
+scripts:
+  - 'bin/**/*'
+  - 'scripts/**/*'
+
+tests:
+  - 'test/**/*'
+  - '**/*.test.js'
+  - '**/*.spec.js'
+
+configuration:
+  - '**/.*.yml'
+  - '**/.*.yaml'
+  - '**/.*.json'
+  - '.editorconfig'
+  - '.gitignore'
+
+community:
+  - 'CODE_OF_CONDUCT.md'
+  - 'CONTRIBUTING.md'
+  - 'SECURITY.md'
+  - 'SUPPORT.md'
+  - 'LICENSE'

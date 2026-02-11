@@ -1,0 +1,22 @@
+name: Auto Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 1" # weekly
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: No-op placeholder (document intent)
+        run: |
+          echo "Auto-sync is intentionally a placeholder."
+          echo "If you want cross-repo sync, implement with GitHub CLI and PAT with appropriate scopes."
