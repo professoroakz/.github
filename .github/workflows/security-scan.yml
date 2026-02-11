@@ -13,19 +13,16 @@ permissions:
   security-events: write
 
 jobs:
-  # dependency-review:
-  #   name: Dependency Review
-  #   runs-on: ubuntu-latest
-  #   if: github.event_name == 'pull_request'
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #
-  #     - name: Dependency Review
-  #       uses: actions/dependency-review-action@v4
-  #   # Disabled: Dependency graph not enabled on this repository
-  #   # Enable at: https://github.com/professoroakz/.github/settings/security_analysis
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
   npm-audit:
     name: NPM Security Audit
     runs-on: ubuntu-latest
@@ -37,10 +34,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - name: Install dependencies
         run: npm install
-
       - name: Run npm audit
         run: npm audit --audit-level=moderate
         continue-on-error: true
