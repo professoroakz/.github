@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
   repo_hygiene:
@@ -44,6 +44,6 @@ jobs:
       - name: Markdown link check
         uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
-          use-quiet-mode: "yes"
-          use-verbose-mode: "no"
-          config-file: ".github/mlc_config.json"
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'no'
+          config-file: '.github/mlc_config.json'

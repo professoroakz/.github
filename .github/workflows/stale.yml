@@ -2,7 +2,7 @@ name: Stale
 
 on:
   schedule:
-    - cron: "0 3 * * 0" # weekly
+    - cron: '0 3 * * 0' # weekly
 
 permissions:
   issues: write
@@ -16,10 +16,10 @@ jobs:
         with:
           days-before-stale: 30
           days-before-close: 14
-          stale-issue-label: "stale"
-          stale-pr-label: "stale"
-          exempt-issue-labels: "pinned,security,planned"
-          exempt-pr-labels: "pinned,security,planned"
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'
+          exempt-issue-labels: 'pinned,security,planned'
+          exempt-pr-labels: 'pinned,security,planned'
           stale-issue-message: >
             This issue has been automatically marked as stale due to inactivity.
             If this is still relevant, please add an update.

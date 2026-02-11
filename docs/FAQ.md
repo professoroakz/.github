@@ -4,15 +4,19 @@
 
 ### What is this repository?
 
-This is the `.github` repository for the professoroakz organization. It contains default community health files, issue templates, workflows, and configurations that apply to all repositories in the organization.
+This is the `.github` repository for the professoroakz organization. It contains default community
+health files, issue templates, workflows, and configurations that apply to all repositories in the
+organization.
 
 ### How does the `.github` repository work?
 
-GitHub automatically uses files from a special `.github` repository as defaults for all public repositories in an organization that don't have their own versions of these files.
+GitHub automatically uses files from a special `.github` repository as defaults for all public
+repositories in an organization that don't have their own versions of these files.
 
 ### Which files are shared across repositories?
 
 The following files are shared as defaults:
+
 - Issue templates (`.github/ISSUE_TEMPLATE/*`)
 - Pull request template (`.github/pull_request_template.md`)
 - CODE_OF_CONDUCT.md
@@ -50,6 +54,7 @@ sudo ln -s $(pwd)/bin/github-config /usr/local/bin/github-config
 ```
 
 This will:
+
 - Check prerequisites
 - Install dependencies
 - Set permissions
@@ -101,7 +106,8 @@ docker build -t professoroakz/github-config:latest .
 
 ### Can I override these files in my repository?
 
-Yes! If you create the same file in your repository, it will override the default from this `.github` repository.
+Yes! If you create the same file in your repository, it will override the default from this
+`.github` repository.
 
 ### How do I customize issue templates for my repository?
 
@@ -157,10 +163,10 @@ Common issues:
 
 ### Tests are failing
 
-Run with verbose output:
+Run the test suite:
 
 ```bash
-./test/run-tests.sh -v
+./test/run-tests.sh
 ```
 
 Check for missing files:
@@ -172,6 +178,7 @@ Check for missing files:
 ### Workflows aren't running
 
 Remember:
+
 - Workflows in `.github` repository are templates/documentation
 - They don't run automatically in other repositories
 - Copy them to your repository's `.github/workflows/` to use
@@ -183,6 +190,7 @@ Remember:
 See [CONTRIBUTING.md](../CONTRIBUTING.md) for detailed guidelines.
 
 Quick steps:
+
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
@@ -200,6 +208,7 @@ Quick steps:
 ### How do I report a bug?
 
 Use the bug report template:
+
 1. Go to Issues tab
 2. Click "New Issue"
 3. Select "Bug report"
@@ -220,6 +229,7 @@ See [SECURITY.md](../SECURITY.md) for details.
 ### Are dependencies kept up to date?
 
 Yes, through:
+
 - Dependabot (automated PRs for updates)
 - Renovate (optional, more advanced automation)
 - Regular security audits
@@ -229,6 +239,7 @@ Yes, through:
 ### Is this package lightweight?
 
 Yes:
+
 - Minimal dependencies
 - Small package size
 - Fast installation
@@ -237,11 +248,13 @@ Yes:
 ### What are the system requirements?
 
 **Minimum:**
+
 - Node.js 14+ (for NPM package)
 - Bash 4+ (for scripts)
 - Python 3.6+ (for Python scripts)
 
 **Recommended:**
+
 - Node.js 20+
 - Docker (for containerization)
 - Make (for build automation)
@@ -255,6 +268,7 @@ Yes! The repository includes several workflow templates you can copy to your rep
 ### Can I use this with other CI/CD systems?
 
 Yes, the scripts and tools work independently of GitHub Actions and can be integrated with:
+
 - GitLab CI
 - Jenkins
 - CircleCI
@@ -264,6 +278,7 @@ Yes, the scripts and tools work independently of GitHub Actions and can be integ
 ### Can I deploy to other registries?
 
 Yes, modify the deployment script or workflows to target:
+
 - Private NPM registries
 - Docker registries (Docker Hub, AWS ECR, etc.)
 - Other package managers
@@ -288,6 +303,7 @@ Yes, modify the deployment script or workflows to target:
 ### Is there a community chat?
 
 Check the organization's main page for:
+
 - Discussions (if enabled)
 - Chat links
 - Community resources
@@ -325,6 +341,7 @@ Attribution is appreciated but not required by the MIT license.
 ### Will updates break my code?
 
 We follow semantic versioning:
+
 - PATCH: Bug fixes (safe)
 - MINOR: New features (safe, backward compatible)
 - MAJOR: Breaking changes (review before upgrading)

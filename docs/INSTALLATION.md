@@ -165,6 +165,7 @@ Markdown files are linted using markdownlint with rules defined in `.markdownlin
 ### Git Ignore
 
 The `.gitignore` file excludes:
+
 - Build artifacts
 - Node modules
 - OS-specific files
@@ -233,6 +234,7 @@ sudo rm /usr/local/bin/github-config
 ## Support
 
 For issues and questions:
+
 - Open an issue on GitHub
 - Check [SUPPORT.md](../SUPPORT.md)
 - Read [CONTRIBUTING.md](../CONTRIBUTING.md)
