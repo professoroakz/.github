@@ -3,7 +3,7 @@ name: Lint
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   markdown:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Markdown Lint
         uses: DavidAnson/markdownlint-cli2-action@v16
         with:
@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: YAML Lint
         uses: ibiqlik/action-yamllint@v3
         with:
@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@2.1.0
         with:
@@ -50,14 +50,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       - name: Install Prettier
         run: npm install --global prettier
-      
+
       - name: Run Prettier
         run: prettier --check '**/*.{json,md,yml,yaml}' --ignore-path .gitignore

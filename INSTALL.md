@@ -61,11 +61,13 @@ make docker-build
 ### macOS
 
 **Method 1: Homebrew (Recommended)**
+
 ```bash
 make brew-install
 ```
 
 **Method 2: Manual**
+
 ```bash
 sudo make install-system
 ```
@@ -73,6 +75,7 @@ sudo make install-system
 ### Linux
 
 **Debian/Ubuntu**
+
 ```bash
 # Install dependencies
 sudo apt-get update
@@ -83,6 +86,7 @@ sudo make install-system
 ```
 
 **Fedora/RHEL/CentOS**
+
 ```bash
 # Install dependencies
 sudo dnf install -y nodejs npm python3
@@ -92,6 +96,7 @@ sudo make install-system
 ```
 
 **Arch Linux**
+
 ```bash
 # Install dependencies
 sudo pacman -S nodejs npm python
@@ -103,12 +108,14 @@ sudo make install-system
 ### Windows
 
 **Git Bash / WSL (Windows Subsystem for Linux)**
+
 ```bash
 # Install to user directory
 make install-user
 ```
 
 **PowerShell (coming soon)**
+
 ```powershell
 # Installation via PowerShell script (planned)
 ```
@@ -268,6 +275,7 @@ npm uninstall -g @professoroakz/github
 ### Permission denied
 
 If you get permission errors:
+
 ```bash
 # Make scripts executable
 chmod +x bin/github-config
@@ -278,6 +286,7 @@ chmod +x scripts/*.sh
 ### Command not found
 
 Add the installation directory to your PATH:
+
 ```bash
 # For user installation
 export PATH="$HOME/.local/bin:$PATH"
@@ -290,6 +299,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 ### Dependencies missing
 
 Install required dependencies:
+
 - Node.js 14+ (optional, for NPM features)
 - Python 3.6+ (optional, for health checks)
 - Bash 4+ (for scripts)
@@ -298,6 +308,7 @@ Install required dependencies:
 ## Support
 
 For installation issues, see:
+
 - [FAQ](docs/FAQ.md)
 - [SUPPORT.md](SUPPORT.md)
 - [GitHub Issues](https://github.com/professoroakz/.github/issues)

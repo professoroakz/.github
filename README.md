@@ -3,6 +3,7 @@
 Organization-wide GitHub configuration and community health files for **professoroakz**.
 
 ## What this repo provides
+
 - Issue templates
 - Pull request template
 - CODEOWNERS
@@ -11,7 +12,9 @@ Organization-wide GitHub configuration and community health files for **professo
 - CI checks for repository hygiene
 
 ## How it works
-GitHub uses certain files from the `.github` repository as **defaults** for other repositories in the org.
+
+GitHub uses certain files from the `.github` repository as **defaults** for other repositories in
+the org.
 
 ## NPM Package
 
@@ -44,6 +47,7 @@ const settingsPath = github.getSettingsPath('.actions');
 ```
 
 ## Security
+
 If you discover a vulnerability, please follow the instructions in `SECURITY.md`.
 
 ## License

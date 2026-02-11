@@ -13,6 +13,7 @@ Initial setup script for the repository.
 ```
 
 **What it does:**
+
 - Checks prerequisites (Node.js, Docker, Make)
 - Installs NPM dependencies
 - Sets executable permissions
@@ -28,6 +29,7 @@ Python health check script for validating repository structure.
 ```
 
 **What it checks:**
+
 - Required files exist
 - JSON file syntax
 - Directory structure
@@ -54,12 +56,14 @@ Deployment script for publishing to various targets.
 ```
 
 **Targets:**
+
 - `npm` - Publish to NPM registry
 - `docker` - Build and push Docker image
 - `github-release` - Create GitHub release
 - `all` - Deploy all targets
 
 **Options:**
+
 - `-d, --dry-run` - Dry run mode
 - `-v, --version <version>` - Specify version
 - `-h, --help` - Show help
