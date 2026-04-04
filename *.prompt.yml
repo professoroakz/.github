@@ -5,4 +5,6 @@ messages:
     content: |-
       () . * 8 etc +all ..
       exec all
+      make *
+      make all
 model: openai/gpt-4o
