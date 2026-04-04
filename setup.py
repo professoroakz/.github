@@ -1,19 +1,3 @@
-"""Setup script for professoroakz-github package."""
-
-from setuptools import setup
-
-# Read version from VERSION file
-with open("VERSION", "r") as f:
-    version = f.read().strip()
-
-setup(
-    name="professoroakz-github",
-    version=version,
-    description="GitHub configuration repository",
-    long_description=open("README.md").read(),
-    long_description_content_type="text/markdown",
-    author="professoroakz",
-    url="https://github.com/professoroakz/.github",
-    license="MIT",
-    python_requires=">=3.9",
-)
+version https://git-lfs.github.com/spec/v1
+oid sha256:7b1a025493c79ecd24b837e9632a4b0df7c565603e0acc3d92978ef06c8cfdad
+size 521

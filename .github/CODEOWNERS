@@ -1,33 +1,3 @@
-# Code Owners for professoroakz/.github repository
-# These owners will be the default owners for everything in the repo.
-# Unless a later match takes precedence, they will be requested for
-# review when someone opens a pull request.
-
-# Global owners
-* @professoroakz
-
-# GitHub Actions workflows
-/.github/workflows/ @professoroakz
-
-# Security and community health files
-/SECURITY.md @professoroakz
-/CONTRIBUTING.md @professoroakz
-/.github/ISSUE_TEMPLATE/ @professoroakz
-
-# Build and automation
-/Makefile @professoroakz
-/Dockerfile @professoroakz
-/docker-compose.yml @professoroakz
-/scripts/ @professoroakz
-
-# Package configuration
-/package.json @professoroakz
-/pyproject.toml @professoroakz
-/setup.py @professoroakz
-
-# Homebrew formula
-/homebrew/ @professoroakz
-/Formula/ @professoroakz
-
-# Documentation
-*.md @professoroakz
+version https://git-lfs.github.com/spec/v1
+oid sha256:109a043df7261812ac19a4c6f787794f742d82ad645f815a4dfb81c2fa354409
+size 823

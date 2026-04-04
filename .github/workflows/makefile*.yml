@@ -1,27 +1,3 @@
-name: Makefile CI *
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  build:
-
-    runs-on: self-hosted
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: configure *
-      run: ./configure*
-
-    - name: Install dependencies
-      run: make *
-
-    - name: Run check
-      run: make * check
-
-    - name: Run distcheck
-      run: make distcheck
+version https://git-lfs.github.com/spec/v1
+oid sha256:82281513c64714ff505629db6185643295046cd18d95f355ef2f711e0d65e7fd
+size 386

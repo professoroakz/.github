@@ -1,26 +1,3 @@
-## Hi there 👋 * 🌟 . 
-
-- 👽 Applying + Making + Started Core Movement(s) around the 90s
-- 🔭 I’m currently working on xaoex + code
-- 🌱 I’m currently learning cs
-- 👯 I’m looking to collaborate on cs
-- 🤔 I’m looking for help with indek
-- 💬 Ask me about anything
-- 📫 How to reach me: linktr.ee/oktays
-- 😄 Pronouns: him/he
-- ⚡ Fun fact: xaoex forever
-- 😎 In @o(cool)
-- 🤩 Studying @polytechnic
-- 🤓 Working @xaoex @simulation @reality @psychadelics
-- 😄 Running repos + evaling + deving projects and things
-- 👾 Owner/Creator of a fuckton of things / a.xyz included bitches
-- 💿 runnin code all over the place everywhere always
-- ./
-- *
-- .*
-- *.
-
-
-
-
-*
+version https://git-lfs.github.com/spec/v1
+oid sha256:0572099c6af08c7ad205a3d7d7889e3643b7fd536103e8dc000caac3b6bc44cc
+size 699

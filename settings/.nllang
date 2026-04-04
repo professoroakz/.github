@@ -1,6 +1,3 @@
-.take
-.lemon # cucumber like language for .files and such, 
-       # expression in NL 
-.etc
-.bottalk # discord like for situation with all our things 
-         # (maps if missing batchjob like everything else) 
+version https://git-lfs.github.com/spec/v1
+oid sha256:cfc929cb54018997d14b1044ddb661e483053d6aeee4918eb894e71880eb81cd
+size 211

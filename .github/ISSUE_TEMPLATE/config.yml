@@ -1,8 +1,3 @@
-blank_issues_enabled: false
-contact_links:
-  - name: Question or Discussion
-    url: https://github.com/professoroakz/.github/discussions
-    about: Please use GitHub Discussions for questions and general discussion
-  - name: Security Issue
-    url: https://github.com/professoroakz/.github/security/advisories/new
-    about: Please report security vulnerabilities privately
+version https://git-lfs.github.com/spec/v1
+oid sha256:1a99ae5adbf5e4911c7db0e83a3fb652e22e8a17995549fc1900174fcd0b4574
+size 375

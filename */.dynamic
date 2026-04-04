@@ -1,5 +1,3 @@
-./dynamicsecurity
-./security
-./enterprise
-./organizations
-./repos
+version https://git-lfs.github.com/spec/v1
+oid sha256:86c39b800a7640bc079f4277c5ec5572974d88b3ecf94e237fc4cdda3a62e16e
+size 66

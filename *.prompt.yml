@@ -1,10 +1,3 @@
-messages:
-  - role: system
-    content: '*'
-  - role: user
-    content: |-
-      () . * 8 etc +all ..
-      exec all
-      make *
-      make all
-model: openai/gpt-4o
+version https://git-lfs.github.com/spec/v1
+oid sha256:850d9c24f43cee159915789b76f02f171ad3f7ae425de4bfee961b5c3f5179c0
+size 166
