@@ -1,0 +1,8 @@
+messages:
+  - role: system
+    content: '*'
+  - role: user
+    content: |-
+      () . * 8 etc
+      exec all
+model: openai/gpt-4o
