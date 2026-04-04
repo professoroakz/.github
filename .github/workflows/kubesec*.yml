@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Kubesec
+name: Kubesec for *
 
 on:
   push:
@@ -17,7 +17,7 @@ on:
 jobs:
   lint:
     name: Kubesec *
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       actions: read
       contents: read
