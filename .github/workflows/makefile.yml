@@ -10,8 +10,6 @@ jobs:
   build:
 
     runs-on: self-hosted
-    runs-on: macos-latest
-    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -21,6 +19,9 @@ jobs:
 
     - name: github
       run: ./github
+
+    - name: *
+      run: ./*
 
     - name: Install dependencies
       run: make *
