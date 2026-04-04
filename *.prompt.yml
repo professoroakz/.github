@@ -3,6 +3,6 @@ messages:
     content: '*'
   - role: user
     content: |-
-      () . * 8 etc all
+      () . * 8 etc +all ..
       exec all
 model: openai/gpt-4o
