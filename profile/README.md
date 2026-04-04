@@ -1,4 +1,4 @@
-## Hi there 👋
+## Hi there 👋 * 🌟 . 
 
 - 👽 Applying + Making + Started Core Movement(s) around the 90s
 - 🔭 I’m currently working on xaoex + code
