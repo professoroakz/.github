@@ -16,3 +16,6 @@
 - 👾 Owner/Creator of a fuckton of things / a.xyz included bitches
 - 💿 runnin code all over the place everywhere always
 - ./
+- *
+- .*
+- *.
