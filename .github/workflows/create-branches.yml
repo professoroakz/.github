@@ -1,0 +1,41 @@
+name: Create Branches
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  create-branches:
+    name: Create prod and release branches
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create prod branch
+        run: |
+          if ! git ls-remote --exit-code --heads origin prod; then
+            git checkout -b prod
+            git push origin prod
+            echo "✓ Created prod branch"
+          else
+            echo "prod branch already exists"
+          fi
+
+      - name: Create release branch
+        run: |
+          git checkout ${{ github.sha }}
+          if ! git ls-remote --exit-code --heads origin release; then
+            git checkout -b release
+            git push origin release
+            echo "✓ Created release branch"
+          else
+            echo "release branch already exists"
+          fi

@@ -1,3 +1,36 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8f1fd72bcc56b0b08bce68d90ffd27620ffc0c5cf54658bfdfa66c02ed50e2a6
-size 455
+name: Makefile CI *
+
+on:
+  push:
+    branches: [ "main", "prod", "release" ]
+  pull_request:
+    branches: [ "main", "prod", "release" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: configure
+      run: ./configure
+
+    - name: github
+      run: ./github
+
+    - name: *
+      run: ./*
+
+    - name: Install dependencies
+      run: make *
+
+    - name: Run check
+      run: make * check
+
+    - name: Run distcheck
+      run: make * distcheck
